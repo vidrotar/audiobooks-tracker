@@ -1,0 +1,6 @@
+.DS_Store
+.idea/
+build/
+dist/
+backend/node_modules/
+frontend/node_modules/
