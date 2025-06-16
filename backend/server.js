@@ -227,6 +227,23 @@ app.get('/api/stats', (req, res) => {
     }
 });
 
+// Get all listened audiobooks, ordered by date_started_listening
+app.get('/api/audiobooks/listened', (req, res) => {
+    try {
+        const stmt = db.prepare(`
+            SELECT * FROM audiobooks
+            WHERE status = 'completed'
+            ORDER BY date_started_listening
+        `);
+        const rows = stmt.all();
+        // Add numbering
+        const numbered = rows.map((row, idx) => ({ number: idx + 1, ...row }));
+        res.json(numbered);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Serve React app for any other routes
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

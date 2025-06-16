@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Plus, Search, Star, Clock, User, Headphones, Filter, Edit3, Trash2, Calendar } from 'lucide-react';
+import ListenedAudiobooks from './components/ListenedAudiobooks';
 import axios from 'axios';
 
 const API_BASE = '/api';
@@ -213,6 +214,8 @@ function App() {
                         <div className="text-gray-600">To Listen</div>
                     </div>
                 </div>
+
+                <ListenedAudiobooks/>
 
                 {/* Controls */}
                 <div className="glass-card rounded-xl p-6 mb-8">
